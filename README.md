@@ -14,7 +14,7 @@ Can a neural network predict currency markets? This project trains **feed-forwar
 |---|---|---|---|
 | **Price** `Price(t+h)` | MLPRegressor | **R² = 0.986** (EURUSD, t+1) | Strong for short horizons but unstable across pairs. USDCHF scores very negative R², likely because its test-period prices fall below the training range and MLPs cannot extrapolate |
 | **Return** `ROC(t+h)` | MLPRegressor | R² ≈ 0 | Returns are close to unpredictable as a point estimate, which is consistent with efficient-market theory |
-| **Direction** `sign(ROC(t+h))` | MLPRegressor / MLPClassifier | **70.7% accuracy, F1 0.70** (USDCAD, t+3) | Clearly beats the 50% random baseline for USDCAD (69% average) and USDJPY (63% average) |
+| **Direction** `sign(ROC(t+h))` | MLPRegressor / MLPClassifier | **70.7% accuracy, F1 0.70** (USDCAD, t+3) | Most feature sets stay close to the 50% random baseline (51–54% on average). The richest feature set (price + ROC + SMA, `3-3a`) averages **57.5%** and does best on USDCAD and USDJPY |
 
 In total there are **630 model runs**: 27 experiment variants × 6 pairs × 3–4 horizons. Every run is logged with MAE, RMSE, R², MAPE, direction accuracy, precision, recall, F1 and a confusion matrix.
 
